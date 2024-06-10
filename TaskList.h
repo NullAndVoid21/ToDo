@@ -10,18 +10,16 @@ using namespace std;
 class TaskList{
     private:
     string fileName;
+    vector<Task> tasks;
+    map<string, int> lookup;
+    map<string, vector<string>> acceptedOptions;
     public:
     TaskList(string);
     void write(void);
 
+    // Main Functions
     void list(vector<string>, vector<string>);
-
-    vector<Task> tasks;
-    map<string, int> lookup;
+    void add(vector<string>, vector<string>);
 };
-
-bool isNumber(string);
-void setColor(int);
-
 
 #endif

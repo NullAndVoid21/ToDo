@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <windows.h>
 #include "TaskList.h"
+#include "Utilities.h"
 
 TaskList::TaskList(string fileName){
 
@@ -57,11 +58,20 @@ void TaskList::write(void){
 }
 
 void TaskList::list(vector<string> commands, vector<string> options){
+
+    string check = checkOptions("list", options);
+    if (check != ""){
+        cout << "Unknown optional argument " << check;
+        return;
+    }
+
     if (commands.size() == 1){ // Print out full list
         for (int i = 0 ; i < tasks.size(); i++){
-            cout << tasks[i].name << endl;
+            cout << i << ' ' << "\u2588"<< ' ' << tasks[i].name << endl;
             if(find(options.begin(), options.end(), "-d") != options.end()) {
-                cout << '\t' << tasks[i].description << endl;
+                setColor(DARK_GRAY);
+                cout << "  " << "\u2588"<<'\t' << tasks[i].description << endl;
+                setColor(WHITE);
             }
         } 
     }
@@ -88,29 +98,25 @@ void TaskList::list(vector<string> commands, vector<string> options){
         Task task = tasks[index];
 
         cout << endl;
-        setColor(15);
+        setColor(WHITE);
         cout << "\033[4m" << task.name << "\033[24m" << endl;
-        setColor(8);
+        setColor(DARK_GRAY);
         cout << task.description << endl;
         cout << task.status << endl;
+        setColor(WHITE);
+    }
+
+    else{
+        cout << "Command not recognized";
+        return;
     }
 }
 
+void TaskList::add(vector<string> commands, vector<string> options){
 
-
-
-// Utilities
-
-bool isNumber(string s)
-{
-    for (char c : s) {
-        if (!isdigit(c)) {
-            return false;
-        }
+    string check = checkOptions("add", options);
+    if (check != ""){
+        cout << "Unknown optional argument " << check;
+        return;
     }
-    return true;
-}
-
-void setColor(int color) {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }

@@ -31,31 +31,10 @@ int main (int argc, char *argv[]){
         taskList.list(commands, options);
     }
 
+    else if (command == "add"){
+        taskList.add(commands, options);
+    }
+
     taskList.write();
     
 }
-
-
-    // if (argc == 2){ // No other arguments
-    //         for (int i = 0; i < tasks.size(); i++) cout << tasks[i].name << endl;
-    //     }d
-
-    //     else{
-    //         for (int i = 0; i < tasks.size(); i++){
-    //             if (argv[2] == tasks[i].name){
-    //                 task = tasks[i];
-
-    //                 cout << endl;
-    //                 setColor(15);
-    //                 cout << "\033[4m" << task.name << "\033[24m" << endl;
-    //                 setColor(8);
-    //                 cout << task.description << endl;
-    //                 cout << task.status << endl;
-
-    //                 break;
-    //             }
-    //             else if (i = tasks.size() - 1) cout << "No task found with that name";
-    //         }
-    //     }
-
-    //     setColor(15);

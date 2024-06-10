@@ -6,7 +6,7 @@
 using namespace std;
 
 class Task{
-public:
+    public:
     string name;
     string description = "No Description";
     string status = "No Status";
